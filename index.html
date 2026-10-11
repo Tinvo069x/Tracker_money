@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#f5f7fb" />
-<title>Daily Money Tracker</title>
+<title>Daily Money Tracker · Record</title>
 <style>
 :root{
   --bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#778196;--line:#e5eaf1;
@@ -17,17 +17,13 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-f
 button,input,select{font:inherit}
 button{cursor:pointer}
 .app{width:min(1520px,100%);margin:auto;padding:12px 16px 24px}
-.topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:10px}
+.topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;margin-bottom:10px}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-icon{width:40px;height:40px;display:grid;place-items:center;background:#fff4d9;border:1px solid #ffe6a3;border-radius:13px;font-size:20px}
 .brand h1{margin:0;font-size:18px;line-height:1.15}
 .brand small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
-.tabs{display:flex;gap:5px;background:#eef2f7;border:1px solid #e3e8ef;border-radius:14px;padding:4px}
-.tab{border:0;background:transparent;color:#667085;font-weight:800;font-size:11px;padding:9px 22px;border-radius:10px}
-.tab.active{background:#fff;color:#172033;box-shadow:0 3px 12px rgba(31,41,55,.08)}
 .actions{display:flex;justify-content:flex-end;gap:7px}
 .icon-btn{height:36px;padding:0 12px;border:1px solid #e1e7ef;background:#fff;border-radius:11px;color:#465267;font-weight:750;font-size:11px}
-.page{display:none}.page.active{display:block}
 .record-layout{display:grid;grid-template-columns:minmax(420px,.88fr) minmax(650px,1.12fr);gap:14px;align-items:stretch}
 .left-col{display:grid;grid-template-rows:auto 1fr;gap:12px;min-width:0}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
@@ -75,16 +71,10 @@ button{cursor:pointer}
 .dnum{font-size:10px;font-weight:900}.damt{margin-top:6px;font-size:clamp(9px,.8vw,12px);font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dsub{font-size:6px;font-weight:800;opacity:.75}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.kpi{padding:10px 12px;border-radius:14px;min-width:0}.kpi.spent{background:#fff0f2}.kpi.avg{background:#eef5ff}.kpi.high{background:#fff7e7}.kpi span{display:block;color:#687386;font-size:8px;font-weight:850}.kpi strong{display:block;margin-top:3px;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .selected-day{margin-top:8px;padding:10px 12px;border-radius:14px;background:#f5f8fc;border:1px solid #edf0f5;font-size:9px;color:#5a667a}.selected-day strong{color:#1f2937;font-size:11px}
-.dashboard{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-.summary-card{grid-column:span 3;padding:16px}.summary-card span{font-size:9px;color:var(--muted);font-weight:850}.summary-card strong{display:block;margin-top:6px;font-size:23px;letter-spacing:-.04em}
-.panel{grid-column:span 6;padding:16px}.panel.wide{grid-column:1/-1}.panel h3{margin:0 0 12px;font-size:13px}
-.bar-row{display:grid;grid-template-columns:110px 1fr 80px;gap:10px;align-items:center;margin:9px 0}.bar-label{font-size:9px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bar-track{height:10px;border-radius:999px;background:#edf1f5;overflow:hidden}.bar-fill{height:100%;border-radius:999px;background:#ff5a68}.bar-value{text-align:right;font-size:9px;font-weight:850}
-.tx-list{display:grid;gap:7px}.tx-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 11px;border:1px solid #e8ecf2;border-radius:12px;background:#fff}.tx-main strong{display:block;font-size:10px}.tx-main span{display:block;margin-top:2px;font-size:8px;color:var(--muted)}.tx-amount{font-size:10px;font-weight:900}.tx-amount.income{color:var(--income)}.tx-amount.expense{color:var(--expense)}.delete{border:0;background:#fff0f2;color:var(--expense);width:28px;height:28px;border-radius:8px;font-size:12px}
-.empty-state{padding:30px;text-align:center;color:var(--muted);font-size:11px}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.42);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal.show{display:flex}.modal-card{width:min(520px,100%);background:#fff;border-radius:20px;padding:20px;box-shadow:0 24px 70px rgba(0,0,0,.2)}.modal-card h3{margin:0 0 8px}.modal-card p{margin:0 0 15px;color:var(--muted);font-size:10px;line-height:1.6}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.modal-actions button,.file-label{height:40px;border-radius:10px;border:1px solid #dfe5ed;background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:850}.danger{color:#d92d20;background:#fff4f3!important;border-color:#ffd4d0!important}.file-label input{display:none}
 .footer-note{text-align:center;color:#9aa3b2;font-size:8px;margin-top:10px}
-@media(max-width:1050px){.record-layout{grid-template-columns:1fr}.left-col{grid-template-columns:1fr 1fr;grid-template-rows:auto}.dashboard .summary-card{grid-column:span 6}.panel{grid-column:1/-1}}
-@media(max-width:720px){.app{padding:10px 10px 80px}.topbar{grid-template-columns:1fr auto}.tabs{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:50;width:min(420px,calc(100% - 20px));justify-content:center;box-shadow:0 10px 30px rgba(31,41,55,.15)}.tab{flex:1}.actions{grid-column:1/-1;justify-content:flex-start;overflow:auto}.left-col{grid-template-columns:1fr}.balance{min-height:auto}.grid{grid-auto-rows:minmax(55px,1fr)}.day{padding:5px}.dsub{display:none}.kpi strong{font-size:14px}.dashboard .summary-card{grid-column:1/-1}.bar-row{grid-template-columns:80px 1fr 65px}}
+@media(max-width:1050px){.record-layout{grid-template-columns:1fr}.left-col{grid-template-columns:1fr 1fr;grid-template-rows:auto}}
+@media(max-width:720px){.app{padding:10px}.topbar{grid-template-columns:1fr}.actions{justify-content:flex-start;overflow:auto}.left-col{grid-template-columns:1fr}.balance{min-height:auto}.grid{grid-auto-rows:minmax(55px,1fr)}.day{padding:5px}.dsub{display:none}.kpi strong{font-size:14px}}
 </style>
 </head>
 <body>
@@ -94,17 +84,14 @@ button{cursor:pointer}
       <div class="brand-icon">💰</div>
       <div><h1>Daily Money Tracker</h1><small>Local database · dữ liệu nằm trên trình duyệt này</small></div>
     </div>
-    <nav class="tabs">
-      <button class="tab active" data-page="record">✍️ Record</button>
-      <button class="tab" data-page="dashboard">📊 Dashboard</button>
-    </nav>
     <div class="actions">
+      <span class="icon-btn" style="display:flex;align-items:center;background:#eef4ff;color:#2d6df6;border-color:#dce8ff;cursor:default">✍️ Record</span>
       <button class="icon-btn" id="backupBtn">☁ Backup / Restore</button>
       <button class="icon-btn" id="csvBtn">⬇ CSV</button>
     </div>
   </header>
 
-  <section class="page active" id="recordPage">
+  <section id="recordPage">
     <div class="record-layout">
       <div class="left-col">
         <section class="balance card">
@@ -160,19 +147,7 @@ button{cursor:pointer}
       </aside>
     </div>
   </section>
-
-  <section class="page" id="dashboardPage">
-    <div class="dashboard">
-      <div class="summary-card card"><span>THU THÁNG ĐANG CHỌN</span><strong id="dIncome">0</strong></div>
-      <div class="summary-card card"><span>CHI THÁNG ĐANG CHỌN</span><strong id="dExpense">0</strong></div>
-      <div class="summary-card card"><span>NET</span><strong id="dNet">0</strong></div>
-      <div class="summary-card card"><span>SAVING RATE</span><strong id="dSaving">0%</strong></div>
-      <div class="panel card"><h3>Chi theo danh mục</h3><div id="categoryBars"></div></div>
-      <div class="panel card"><h3>12 tháng gần nhất</h3><div id="monthBars"></div></div>
-      <div class="panel wide card"><h3>Giao dịch gần đây</h3><div class="tx-list" id="txList"></div></div>
-    </div>
-  </section>
-  <div class="footer-note">Standalone V10 · IndexedDB · Không cần Google Sheet / Apps Script / GitHub</div>
+  <div class="footer-note">Record Only V11 · IndexedDB · dữ liệu lưu trên trình duyệt này</div>
 </div>
 
 <div class="modal" id="backupModal">
@@ -251,12 +226,6 @@ function setType(t){
   $('incomeBtn').className='type-btn'+(t==='Thu'?' income-active':'');
   $('recordBtn').className='record-btn'+(t==='Thu'?' income-mode':'');
 }
-function setPage(p){
-  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
-  $('recordPage').classList.toggle('active',p==='record');
-  $('dashboardPage').classList.toggle('active',p==='dashboard');
-  if(p==='dashboard') renderDashboard();
-}
 function monthRange(d){
   return [new Date(d.getFullYear(),d.getMonth(),1), new Date(d.getFullYear(),d.getMonth()+1,1)];
 }
@@ -287,7 +256,6 @@ async function refresh(){
   const sr=a.income?((a.net/a.income)*100):0;
   $('savingPill').textContent=`Saving ${sr.toFixed(0)}%`;
   renderCalendar(a);
-  if($('dashboardPage').classList.contains('active')) renderDashboard(txs,a);
 }
 function renderCalendar(a){
   const y=calendarDate.getFullYear(), m=calendarDate.getMonth();
@@ -310,25 +278,10 @@ function renderCalendar(a){
   $('avgKpi').textContent=shortMoney(a.average);
   $('highKpi').textContent=shortMoney(a.highest);
 }
-async function renderDashboard(prefetched, agg){
-  const txs=prefetched||await allTx(), a=agg||aggregateMonth(txs,calendarDate);
-  $('dIncome').textContent=shortMoney(a.income); $('dExpense').textContent=shortMoney(a.expense); $('dNet').textContent=shortMoney(a.net);
-  $('dSaving').textContent=(a.income?((a.net/a.income)*100):0).toFixed(0)+'%';
-  const cats=Object.entries(a.cats).sort((x,y)=>y[1]-x[1]), max=Math.max(1,...cats.map(x=>x[1]));
-  $('categoryBars').innerHTML=cats.length?cats.slice(0,10).map(([c,v])=>`<div class="bar-row"><div class="bar-label">${escapeHtml(c)}</div><div class="bar-track"><div class="bar-fill" style="width:${v/max*100}%"></div></div><div class="bar-value">${shortMoney(v)}</div></div>`).join(''):'<div class="empty-state">Chưa có chi tiêu trong tháng này.</div>';
-  const months=[];
-  for(let i=11;i>=0;i--){const d=new Date(calendarDate.getFullYear(),calendarDate.getMonth()-i,1), ag=aggregateMonth(txs,d);months.push({label:`${pad(d.getMonth()+1)}/${String(d.getFullYear()).slice(-2)}`,expense:ag.expense})}
-  const mm=Math.max(1,...months.map(x=>x.expense));
-  $('monthBars').innerHTML=months.map(x=>`<div class="bar-row"><div class="bar-label">${x.label}</div><div class="bar-track"><div class="bar-fill" style="width:${x.expense/mm*100}%"></div></div><div class="bar-value">${shortMoney(x.expense)}</div></div>`).join('');
-  const recent=[...txs].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,30);
-  $('txList').innerHTML=recent.length?recent.map(t=>`<div class="tx-item"><div class="tx-main"><strong>${escapeHtml(t.category)}</strong><span>${new Date(t.date).toLocaleString('vi-VN')}</span></div><div class="tx-amount ${t.type==='Thu'?'income':'expense'}">${t.type==='Thu'?'+':'-'}${money(t.amount)}</div><button class="delete" data-id="${t.id}" title="Xóa">×</button></div>`).join(''):'<div class="empty-state">Chưa có giao dịch.</div>';
-  document.querySelectorAll('.delete').forEach(b=>b.onclick=async()=>{if(confirm('Xóa giao dịch này?')){await deleteTx(Number(b.dataset.id));await refresh();await renderDashboard()}});
-}
-function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function download(name,text,type='application/json'){
   const blob=new Blob([text],{type}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)
 }
-async function exportJSON(){const txs=await allTx();download(`money-tracker-backup-${keyOf(new Date())}.json`,JSON.stringify({version:10,exportedAt:new Date().toISOString(),transactions:txs},null,2))}
+async function exportJSON(){const txs=await allTx();download(`money-tracker-backup-${keyOf(new Date())}.json`,JSON.stringify({version:11,exportedAt:new Date().toISOString(),transactions:txs},null,2))}
 async function exportCSV(){
   const txs=await allTx(); const rows=[['Date','Category','Type','Amount'],...txs.sort((a,b)=>new Date(a.date)-new Date(b.date)).map(t=>[new Date(t.date).toISOString(),t.category,t.type,t.amount])];
   const csv='\ufeff'+rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n');
@@ -343,7 +296,6 @@ async function importJSON(file){
   await new Promise((res,rej)=>{tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});
   await refresh(); alert('Import hoàn tất.');
 }
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setPage(b.dataset.page));
 $('expenseBtn').onclick=()=>setType('Chi'); $('incomeBtn').onclick=()=>setType('Thu');
 document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{$('amount').value=money(parseAmount($('amount').value)+Number(b.dataset.add))});
 $('amount').addEventListener('input',e=>{const n=parseAmount(e.target.value);e.target.value=n?money(n):''});
